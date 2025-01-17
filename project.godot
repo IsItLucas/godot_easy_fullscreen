@@ -15,8 +15,9 @@ show_on_startup=true
 [application]
 
 config/name="Easy Fullscreen"
+run/main_scene="uid://vmefdm8at7tg"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.png"
+config/icon="uid://cmdur12hshcto"
 
 [autoload]
 
