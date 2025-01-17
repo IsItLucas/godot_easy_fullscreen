@@ -22,14 +22,14 @@ config/icon="res://icon.png"
 
 Fullscreen="*res://addons/easy_fullscreen/autoload.gd"
 
-[easy_fullscreen]
-
-enabled=true
-action="fullscreen"
-
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/easy_fullscreen/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+
+[godot_easy]
+
+fullscreen/enabled=true
+fullscreen/action="fullscreen"
 
 [input]
 
