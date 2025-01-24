@@ -1,16 +1,48 @@
-@tool
-extends EditorPlugin
+@tool extends EditorPlugin
+
+
+# Added constants to make the creation of new "Godot Easy ..." plugins easier.
+const AUTOLOAD_NAME := "Fullscreen"
+const FOLDER_NAME := "easy_fullscreen"
+const SETTINGS_NAME := "fullscreen"
+
+# All custom project settings created by the addon should be in here for an easy clean up and addition.
+const CUSTOM_SETTINGS: Array[Array] = [
+	["enabled", true],
+	["action", "fullscreen"],
+]
 
 
 func _enter_tree() -> void:
-	add_autoload_singleton("Fullscreen", "res://addons/easy_fullscreen/autoload.gd")
+	# Add GES autoload.
+	add_autoload_singleton(AUTOLOAD_NAME, "res://addons/" + FOLDER_NAME + "/autoload.gd")
 	
-	ProjectSettings.set_setting("godot_easy/fullscreen/enabled", true)
-	ProjectSettings.set_setting("godot_easy/fullscreen/action", "fullscreen")
+	# Add GES settings with compatibility for other "Godot Easy ..." plugins.
+	for pair: Array in CUSTOM_SETTINGS:
+		var setting_name: String = pair[0]
+		var setting_value: Variant = pair[1]
+		set_setting(setting_name, setting_value)
 
 
 func _exit_tree() -> void:
-	remove_autoload_singleton("Fullscreen")
+	# Remove GES autoload.
+	remove_autoload_singleton(AUTOLOAD_NAME)
 	
-	ProjectSettings.set_setting("godot_easy/fullscreen/enabled", null)
-	ProjectSettings.set_setting("godot_easy/fullscreen/action", null)
+	# Remove custom settings.
+	for pair: Array in CUSTOM_SETTINGS:
+		var setting_name: String = pair[0]
+		var path := get_setting_path(setting_name)
+		ProjectSettings.set_setting(path, null)
+
+
+func set_setting(setting_name: String, setting_value: Variant) -> void:
+	# Add / remove a project setting. What this line does is defined by setting_value.
+	# If the value is null, the setting will be removed. But if not, the setting is going to be added.
+	var path := get_setting_path(setting_name)
+	if not ProjectSettings.has_setting(path):
+		ProjectSettings.set_setting(path, ProjectSettings.get_setting(path, setting_value))
+		ProjectSettings.set_initial_value(path, setting_value)
+
+
+func get_setting_path(setting: String) -> String:
+	return "godot_easy/" + SETTINGS_NAME + "/" + setting

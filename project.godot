@@ -15,9 +15,10 @@ show_on_startup=true
 [application]
 
 config/name="Easy Fullscreen"
+config/tags=PackedStringArray("addon")
 run/main_scene="uid://vmefdm8at7tg"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="uid://cmdur12hshcto"
+config/icon="res://addons/easy_fullscreen/icon.png"
 
 [autoload]
 
@@ -25,12 +26,11 @@ Fullscreen="*res://addons/easy_fullscreen/autoload.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/easy_fullscreen/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/easy_fullscreen/plugin.cfg")
 
 [godot_easy]
 
-fullscreen/enabled=true
-fullscreen/action="fullscreen"
+fullscreen/enabled=false
 
 [input]
 
