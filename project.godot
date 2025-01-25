@@ -26,11 +26,11 @@ Fullscreen="*res://addons/easy_fullscreen/autoload.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/easy_fullscreen/plugin.cfg")
+enabled=PackedStringArray("res://addons/easy_fullscreen/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [godot_easy]
 
-fullscreen/enabled=false
+fullscreen/enabled=true
 
 [input]
 

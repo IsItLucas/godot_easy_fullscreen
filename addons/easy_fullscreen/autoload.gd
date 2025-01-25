@@ -47,18 +47,25 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	# Check if the fullscreen button exists.
+	var action: String = ProjectSettings.get_setting("godot_easy/fullscreen/action", "fullscreen")
+	if not InputMap.has_action(action):
+		push_error("Fullscreen keybind \"%s\" doesn't exists." % action)
+		return
+	
+	# Check if the fullscreen button is pressed.
+	if not event.is_action_pressed(action):
+		return
+	
 	# Check if the fullscreen button is enabled in the project settings.
 	var is_enabled: bool =  ProjectSettings.get_setting("godot_easy/fullscreen/enabled", false)
 	if not is_enabled:
+		push_warning("Can't toggle fullscreen because its functionality is disabled in the Project Settings.")
 		return
 	
 	# Checks if the fullscreen is not locked.
 	if lock_mode != LockModes.UNLOCKED:
-		return
-	
-	# Check if the fullscreen button exists.
-	var action: String = ProjectSettings.get_setting("godot_easy/fullscreen/action", "fullscreen")
-	if not InputMap.has_action(action):
+		push_warning("Can't toggle fullscreen because it's currently locked to %s." % FullscreenHelper.lock_mode_to_str(lock_mode))
 		return
 	
 	# Check if the fullscreen button is pressed.
@@ -71,12 +78,19 @@ func _input(event: InputEvent) -> void:
 func toggle_fullscreen(enabled: bool) -> void:
 	# Update variables.
 	is_fullscreen = enabled
+	var debug_log: bool = FullscreenHelper.get_setting("debug_log", true)
 	
 	# Change mode.
 	if is_fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		
+		if debug_log:
+			print("Fullscreen toggled on.")
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		
+		if debug_log:
+			print("Fullscreen toggled off.")
 	
 	# Emit a signal.
 	fullscreen_toggled.emit(is_fullscreen)
@@ -95,3 +109,8 @@ func lock(mode: LockModes) -> void:
 		# Disable fullscreen.
 		LockModes.WINDOWED:
 			toggle_fullscreen(false)
+	
+	# Debug log.
+	var debug_log: bool = FullscreenHelper.get_setting("debug_log", true)
+	if debug_log:
+		print("Locking to %s." % FullscreenHelper.lock_mode_to_str(lock_mode))
