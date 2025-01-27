@@ -21,3 +21,4 @@ GEFS (Godot Easy Fullscreen) is a simple and lightweight addon for the Godot Eng
 
 ## Usage 🎮⌨️🖥️
 Press the configured shortcut to enter or exit fullscreen mode.
+Documentation can be found [here](https://github.com/IsItLucas/godot_easy_fullscreen/wiki).
