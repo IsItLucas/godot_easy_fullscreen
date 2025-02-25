@@ -1,6 +1,11 @@
 class_name FullscreenHelper extends Node
 
 
+## This class only serves as a helper class.
+## It contains some utils and / or quality of life features.
+## This is mainly used by GET - Godot Easy Translations, but feel free to use it if you want / need.
+
+
 ## The prefix of the project settings related to the addon.
 const SETTINGS_NAME := "fullscreen"
 

@@ -22,7 +22,7 @@ config/icon="res://addons/easy_fullscreen/icon.png"
 
 [autoload]
 
-Fullscreen="*res://addons/easy_fullscreen/autoload.gd"
+Fullscreen="*res://addons/easy_fullscreen/fullscreen.gd"
 
 [editor_plugins]
 
