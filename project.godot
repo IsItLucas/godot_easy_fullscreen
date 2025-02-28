@@ -16,7 +16,7 @@ show_on_startup=true
 
 config/name="Easy Fullscreen"
 config/tags=PackedStringArray("addon")
-run/main_scene="uid://vmefdm8at7tg"
+run/main_scene="uid://cvn3bojqfsupf"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://addons/easy_fullscreen/icon.png"
 

@@ -65,6 +65,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 ## This method toggles the fullscreen mode.
 func toggle(enabled: bool) -> void:
+	# Check if the fullscreen mode is not locked.
+	if lock_mode == LockModes.CURRENT or (lock_mode == LockModes.WINDOWED and enabled) or (lock_mode == LockModes.FULLSCREEN and not enabled):
+		print("Can't toggle fullscreen: Locked to %s." % lock_mode_to_str(lock_mode))
+		return
+	
 	# Change mode.
 	if enabled:
 		# Toggle fullscreen on.
@@ -99,7 +104,10 @@ func lock(mode: LockModes) -> void:
 	
 	# Debug log.
 	if DEBUG_LOG:
-		print("Locking fullscreen to %s." % FullscreenHelper.lock_mode_to_str(lock_mode))
+		print("Locking fullscreen to %s." % lock_mode_to_str(lock_mode))
+	
+	# Emit a signal.
+	fullscreen_locked.emit(mode)
 
 
 ## Returns a human readable string of the current lock mode.
