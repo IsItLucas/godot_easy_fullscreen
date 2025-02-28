@@ -4,9 +4,8 @@ GEFS (Godot Easy Fullscreen) is a simple and lightweight addon for the Godot Eng
 ## Features 🎛️📦🖱️
 - Configurable shortcut to toggle fullscreen mode.
 - Easily enable or disable the fullscreen shortcut.
-- Accessible settings via the Project Settings tab.
-- Signals emitted when fullscreen mode changes.
 - Fullscreen lock system with multiple modes.
+- Signals emitted when fullscreen mode changes.
 - Signals emitted when the lock mode changes.
 
 ## Installation 📥📂🔧
@@ -15,13 +14,12 @@ GEFS (Godot Easy Fullscreen) is a simple and lightweight addon for the Godot Eng
 3. Enable the plugin at: Project > Project Settings > Plugins > Easy Fullscreen.
 
 ## Configuration ⚙️🖥️🎚️
-1. Go to Project > Project Settings > Godot Easy > Fullscreen.
-2. Set the desired keyboard shortcut for toggling fullscreen mode.
-3. You're all set! Use the defined shortcut to switch between fullscreen and windowed modes. ✅🎉
+1. Go to `res://addons/easy_fullscreen/fullscreen.gd` and modify the `ACTIONS` constant.
+2. You're all set! Use the defined shortcut to switch between fullscreen and windowed modes. ✅🎉
 
 ## Usage 🎮⌨️🖥️
-Press the configured shortcut to enter or exit fullscreen mode.
-Documentation can be found [here](https://github.com/IsItLucas/godot_easy_fullscreen/wiki).
+1. Press one the configured shortcuts to enter or exit fullscreen mode.
+2. Alternatively, you can take a look at the example scene located in `res://addons/easy_fullscreen/example/example.tscn` and `res://addons/easy_fullscreen/example/example.gd`.
 
 ## Contributions 🤝🌍
 Contributions are welcome! Feel free to open issues or submit pull requests to improve this addon.
